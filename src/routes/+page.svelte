@@ -29,7 +29,7 @@
 		content="Helping restaurants identify operational gaps and build accountability systems that drive consistent execution."
 	/>
 	<meta property="og:url" content="https://thatlastbutton.com/" />
-	<meta property="og:image" content="https://thatlastbutton.com/images.ls_logo.png" />
+	<meta property="og:image" content="https://thatlastbutton.com/images/ls_logo.png" />
 </svelte:head>
 
 <section class="bg-surface">
