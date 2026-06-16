@@ -1,42 +1,149 @@
-# sv
+# The Last Button
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Restaurant standards, guest experience, and operational improvement consulting.
 
-## Creating a project
+The Last Button helps restaurant operators define success, measure performance, identify barriers to execution, and improve consistency across the guest experience, team, kitchen, and business.
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Philosophy
 
-```sh
-# create a new project
-npx sv create my-app
-```
+Great restaurants already have most of what they need to succeed:
 
-To recreate this project with the same configuration:
+- Great Food
+- Great People
+- Great Concept
 
-```sh
-# recreate this project
-npx sv@0.16.1 create --template minimal --types ts --add prettier eslint tailwindcss="plugins:typography,forms" --install npm last-button-web
-```
+The challenge is often the gap between intended standards and actual execution.
 
-## Developing
+The Last Button helps operators:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+1. Define Success
+2. Measure Reality
+3. Close the Gap
+4. Maintain the Gain
 
-```sh
-npm run dev
+When standards are measurable, problems become visible. When problems become visible, improvement becomes sustainable.
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+## Website Structure
 
-## Building
+### Home
 
-To create a production version of your app:
+Primary marketing page covering:
 
-```sh
-npm run build
-```
+- The problem
+- The philosophy
+- Standards and measurement
+- Operational outcomes
+- Assessment process
+- Call to action
 
-You can preview the production build with `npm run preview`.
+### Schedule Assessment
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Lead generation page covering:
+
+- Discovery conversation
+- Assessment process
+- Action planning
+- Optional implementation support
+- Assessment inquiry form
+
+## Core Messaging
+
+### The Problem
+
+Consistency doesn't happen by accident.
+
+It is built through standards.
+
+### The Philosophy
+
+There are plenty of things restaurants can't control.
+
+Standards aren't one of them.
+
+### What We Measure
+
+Success looks different everywhere.
+
+Standards are defined by the concept, operation, and experience ownership intends to create.
+
+Areas typically measured include:
+
+- Guest Experience
+- Kitchen Execution
+- Team Performance
+- Business Performance
+
+### The Outcome
+
+Control the standards. Influence the results that matter.
+
+By identifying what drives results, improving what can be controlled, and creating accountability around execution, restaurants gain greater influence over:
+
+- Guest Satisfaction
+- Repeat Customers
+- Labor Efficiency
+- Food Cost
+- Waste Reduction
+- Profitability
+
+### Process
+
+#### Discovery
+
+Initial consultation to understand the operation, goals, and challenges.
+
+#### Assessment
+
+On-site observation, interviews, and measurement of current performance.
+
+#### Action Plan
+
+Identification of standards, operational gaps, barriers, and improvement opportunities.
+
+#### Implementation Support
+
+Optional support focused on accountability, measurement, training, and execution.
+
+## Technical Stack
+
+### Front End
+
+- SvelteKit
+- TypeScript
+- Tailwind CSS
+- Static Site Generation
+
+### Hosting
+
+- Amazon S3
+- Amazon CloudFront
+
+### Contact Form
+
+Planned architecture:
+
+CloudFront
+→ API Gateway
+→ Lambda
+→ DynamoDB
+
+Inquiry records will be stored for follow-up and assessment scheduling.
+
+## Future Enhancements
+
+- Assessment inquiry management
+- CRM integration
+- Email notifications
+- Case studies
+- Client testimonials
+- Founder background and methodology page
+
+## Guiding Principle
+
+The goal isn't another report.
+
+The goal is clarity.
+
+Clear standards.
+Measurable performance.
+A practical path to improvement.
