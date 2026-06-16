@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Inter:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+@plugin '@tailwindcss/forms';
+@plugin '@tailwindcss/typography';
+
+
+@theme {
+  --color-background: #f7f8fb;
+  --color-surface: #ffffff;
+
+  --color-primary: #0b1f3a; /* deep navy */
+  --color-primary-foreground: #ffffff;
+
+  --color-secondary: #183b63; /* softer navy */
+  --color-secondary-foreground: #ffffff;
+
+  --color-accent: #c8a24a; /* muted gold */
+  --color-highlight: #8f1d2c; /* optional navy/red accent */
+
+  --color-border: #d8dee8;
+  --color-foreground: #101828;
+  --color-muted: #5f6b7a;
+
+  --font-heading: 'Libre Baskerville', serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --radius-vintage: 0.5rem;
+  --shadow-soft: 0 1px 2px rgb(16, 24, 40, 0.08);
+}
+
+
+@layer base {
+	html {
+		background-color: var(--color-background);
+	}
+
+	body {
+		@apply bg-background text-foreground font-body antialiased;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply font-heading text-foreground;
+	}
+
+	a {
+		@apply transition-colors;
+	}
+
+	::selection {
+		background: color-mix(in rgb, var(--color-accent) 45%, white);
+		color: var(--color-foreground);
+	}
+}
+
+@layer components {
+	.btn-base {
+		@apply rounded-vintage shadow-soft px-4 py-4 text-center text-sm font-medium transition-colors;
+	}
+
+	.btn-border {
+		border: 2px solid var(--color-border);
+	}
+
+	.btn-option {
+		@apply rounded-vintage px-2 py-2 text-center text-sm font-medium transition-colors;
+	}
+
+	.btn-primary {
+		@apply bg-primary hover:bg-secondary text-white;
+	}
+
+	.btn-secondary {
+		@apply border-foreground text-foreground hover:bg-border border-1;
+	}
+
+	.btn-link-primary {
+		@apply text-primary;
+	}
+
+	.btn-link-secondary {
+		@apply text-foreground;
+	}
+}
