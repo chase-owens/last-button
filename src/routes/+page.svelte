@@ -6,7 +6,30 @@
 </script>
 
 <svelte:head>
-	<title>The Last Button | Restaurant Standards & Guest Experience</title>
+	<title>The Last Button | Restaurant Operations Consulting</title>
+
+	<meta
+		name="description"
+		content="The Last Button helps independent restaurants improve consistency, guest experience, and operational execution with a constructional approach to restaurant excellence."
+	/>
+
+	<meta
+		name="keywords"
+		content="restaurant consulting, restaurant operations, guest experience, hospitality consulting, restaurant standards, restaurant audits, restaurant assessments, server, server training"
+	/>
+
+	<meta name="robots" content="index,follow" />
+
+	<link rel="canonical" href="https://thatlastbutton.com/" />
+
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="The Last Button" />
+	<meta
+		property="og:description"
+		content="Helping restaurants identify operational gaps and build accountability systems that drive consistent execution."
+	/>
+	<meta property="og:url" content="https://thatlastbutton.com/" />
+	<meta property="og:image" content="https://thatlastbutton.com/images.ls_logo.png" />
 </svelte:head>
 
 <section class="bg-surface">

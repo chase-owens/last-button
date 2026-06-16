@@ -63,9 +63,7 @@
 				Schedule an Assessment
 			</p>
 
-			<h1 class="mt-3 font-heading text-5xl text-primary md:text-6xl">
-				Start with a Conversation.
-			</h1>
+			<h1 class="mt-3 font-heading text-5xl text-primary md:text-6xl">Start with a Conversation</h1>
 
 			<p class="mt-8 max-w-2xl text-lg leading-8 text-muted">
 				Every restaurant is different. The first step isn't recommendations—it's understanding your
