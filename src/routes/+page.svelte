@@ -42,12 +42,14 @@
 			</p>
 
 			<h1 class="font-heading text-5xl leading-tight text-primary md:text-6xl">
-				Great Restaurants Aren't Missing a Foundation
+				Your Restaurant Doesn't Need More Ideas. It needs better execution.
 			</h1>
 
 			<p class="mt-6 max-w-2xl text-lg leading-8 text-muted">
-				Most restaurants already have what they need to succeed. We help operators define standards,
-				measure performance, and close the gap between intention and execution.
+				Most restaurants already have what they need to succeed. The challenge is understanding why
+				results aren't matching the expectations. We help operators identify the gaps between
+				intention and execution, creating a clearer path to consistent guest experiences and
+				stronger performance.
 			</p>
 
 			<div class="mt-8 flex flex-col gap-3 sm:flex-row">
