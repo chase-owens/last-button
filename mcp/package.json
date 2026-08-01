@@ -1,0 +1,14 @@
+{
+	"name": "@last-button/mcp",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"check": "tsc --noEmit",
+		"lint": "eslint src",
+		"lint:fix": "eslint src --fix"
+	},
+	"dependencies": {
+		"@last-button/domain": "*"
+	}
+}
