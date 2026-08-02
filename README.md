@@ -69,6 +69,45 @@ The interview itself is performed entirely by the backend.
 
 # Constructional Interview
 
+flowchart TB
+CI["Constructional Interview<br/>AI Methodology Platform"]
+
+    subgraph PLATFORM[" "]
+        direction TB
+        CI
+
+        RESOURCES["Interview Resources"]
+        PROMPTS["Prompt Engineering"]
+        METHOD["Methodology"]
+        EVAL["Evaluation"]
+        TOOLS["AI Tools"]
+        WORKFLOWS["AI Workflows"]
+
+        CI --> RESOURCES
+        CI --> PROMPTS
+        CI --> METHOD
+        CI --> EVAL
+        CI --> TOOLS
+        CI --> WORKFLOWS
+    end
+
+    CA["Constructional Affection<br/><br/>Behavior Analysis<br/><br/>Schemas<br/>Instructions<br/>Terminology<br/>UI<br/>Persistence<br/>Infrastructure"]
+
+    LB["The Last Button<br/><br/>Restaurant Operations<br/><br/>Schemas<br/>Instructions<br/>Terminology<br/>UI<br/>Persistence<br/>Infrastructure"]
+
+    CI -->|"consumes methodology + tools"| CA
+    CI -->|"consumes methodology + tools"| LB
+
+    classDef platform fill:#1f2937,color:#ffffff,stroke:#9ca3af,stroke-width:1.5px;
+    classDef app fill:#f8fafc,color:#0f172a,stroke:#94a3b8,stroke-width:1.5px;
+
+    class CI,RESOURCES,PROMPTS,METHOD,EVAL,TOOLS,WORKFLOWS platform;
+    class CA,LB app;
+
+Neither application owns the interview methodology.
+
+The Constructional Interview platform exposes the reusable methodology, resources, tools, and workflows. Each consuming application supplies its own domain schemas, terminology, instructions, user experience, persistence, and infrastructure.
+
 The interview is driven by an MCP resource describing the Constructional Interview methodology.
 
 Instead of embedding prompts directly inside the Lambda, the Lambda requests the methodology from the MCP server before generating the next interview step.
