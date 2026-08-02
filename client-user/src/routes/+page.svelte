@@ -1,8 +1,20 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import Footer from '$lib/components/ui/Footer.svelte';
 	import HowItWorks from '$lib/components/ui/HowItWorks.svelte';
 	import PhilosophySection from '$lib/components/ui/PhilosophySection.svelte';
 	import Pillars from '$lib/components/ui/Pillars.svelte';
+
+	//     if (result.status === "continue") {
+	//   messages.push({
+	//     role: "coach",
+	//     content: result.coachMessage
+	//   });
+	// }
+
+	// if (result.status === "complete") {
+	//   vision = result.vision;
+	// }
 </script>
 
 <svelte:head>
@@ -53,7 +65,9 @@
 			</p>
 
 			<div class="mt-8 flex flex-col gap-3 sm:flex-row">
-				<a href="/contact" class="btn-primary px-6 py-4 text-center">Schedule an Assessment</a>
+				<a href={resolve('/contact')} class="btn-primary px-6 py-4 text-center"
+					>Schedule an Assessment</a
+				>
 			</div>
 		</div>
 

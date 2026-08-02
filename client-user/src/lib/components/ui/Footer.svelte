@@ -1,4 +1,6 @@
-<script lang="ts"></script>
+<script lang="ts">
+	import { resolve } from '$app/paths';
+</script>
 
 <section class="bg-primary">
 	<div class="mx-auto max-w-6xl px-4 py-20 text-center">
@@ -9,7 +11,7 @@
 		</p>
 
 		<a
-			href="/contact"
+			href={resolve('/contact')}
 			class="mt-8 inline-flex rounded-vintage bg-accent px-6 py-4 font-semibold text-primary"
 		>
 			Schedule an Assessment

@@ -1,0 +1,28 @@
+{
+  "name": "@last-button/infra",
+  "version": "0.1.0",
+  "scripts": {
+    "build": "tsc --noEmit",
+    "check": "tsc --noEmit",
+    "watch": "tsc --noEmit --watch",
+    "test": "jest --passWithNoTests",
+    "cdk": "cdk",
+    "synth": "cdk synth",
+    "deploy": "cdk deploy"
+  },
+  "devDependencies": {
+    "@types/jest": "^30",
+    "@types/node": "^22.20.1",
+    "aws-cdk": "2.1129.0",
+    "esbuild": "^0.28.1",
+    "jest": "^30",
+    "ts-jest": "^29",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.9.3"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "^2.261.0",
+    "constructs": "^10.6.0",
+    "dotenv": "^17.4.2"
+  }
+}
