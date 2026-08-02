@@ -46,11 +46,11 @@
 
 <section class="bg-surface">
 	<div
-		class="mx-auto grid max-w-6xl gap-12 px-4 py-20 md:grid-cols-[1.2fr_0.8fr] md:items-center md:py-28"
+		class="mx-auto grid max-w-6xl gap-12 px-4 py-20 md:grid-cols-[1.1fr_0.9fr] md:items-center md:py-28"
 	>
 		<div>
 			<p class="mb-4 text-sm font-semibold tracking-[0.24em] text-accent uppercase">
-				Restaurant Standards & Guest Experience
+				DEFINE YOUR STANDARD OF EXCELLENCE
 			</p>
 
 			<h1 class="font-heading text-5xl leading-tight text-primary md:text-6xl">
@@ -58,39 +58,24 @@
 			</h1>
 
 			<p class="mt-6 max-w-2xl text-lg leading-8 text-muted">
-				Most restaurants already have what they need to succeed. The challenge is understanding why
-				results aren't matching the expectations. We help operators identify the gaps between
-				intention and execution, creating a clearer path to consistent guest experiences and
-				stronger performance.
+				Define what exceptional execution actually looks like for your restaurant. In just a few
+				minutes, you'll create a clear operational vision that can be measured, coached, and
+				consistently delivered.
 			</p>
 
 			<div class="mt-8 flex flex-col gap-3 sm:flex-row">
-				<a href={resolve('/contact')} class="btn-primary px-6 py-4 text-center"
-					>Schedule an Assessment</a
-				>
+				<a href={resolve('/vision')} class="btn-primary px-6 py-4 text-center">
+					Create Your Vision
+				</a>
 			</div>
 		</div>
 
-		<div class="rounded-vintage border border-border bg-background p-6 shadow-soft">
-			<div class="space-y-4">
-				<div class="flex items-center justify-between border-b border-border pb-3">
-					<span class="font-medium">Great Food</span>
-					<span class="text-accent">✓</span>
-				</div>
-				<div class="flex items-center justify-between border-b border-border pb-3">
-					<span class="font-medium">Great People</span>
-					<span class="text-accent">✓</span>
-				</div>
-				<div class="flex items-center justify-between border-b border-border pb-3">
-					<span class="font-medium">Great Concept</span>
-					<span class="text-accent">✓</span>
-				</div>
-				<div class="flex items-center justify-between">
-					<span class="font-heading text-2xl text-primary">The Last Button</span>
-					<span class="rounded-full bg-highlight px-3 py-1 text-sm font-semibold text-white">?</span
-					>
-				</div>
-			</div>
+		<div class="overflow-hidden rounded-vintage border border-border bg-background shadow-soft">
+			<img
+				src="/images/bar_hero.png"
+				alt="A warmly lit restaurant bar prepared for evening service"
+				class="aspect-4/5 h-full w-full object-cover md:aspect-3/4"
+			/>
 		</div>
 	</div>
 </section>

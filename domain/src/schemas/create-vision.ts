@@ -9,11 +9,6 @@ const createVisionResultSchema = z.discriminatedUnion("status", [
   }),
 
   z.object({
-    status: z.literal("authentication_required"),
-    coachMessage: z.string(),
-  }),
-
-  z.object({
     status: z.literal("complete"),
     coachMessage: z.string(),
     vision: restaurantVisionSchema,
