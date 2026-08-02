@@ -47,7 +47,7 @@
 			};
 		} catch (error) {
 			submitStatus = 'error';
-			errorMessage = 'Something went wrong. Please try again or contact us directly.';
+			errorMessage = `Something went wrong. Please try again or contact us directly. ${error}`;
 		} finally {
 			isSubmitting = false;
 		}

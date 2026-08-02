@@ -33,7 +33,7 @@
 	}
 
 	body {
-		@apply bg-background text-foreground font-body antialiased;
+		@apply bg-background font-body text-foreground antialiased;
 	}
 
 	h1,
@@ -57,7 +57,7 @@
 
 @layer components {
 	.btn-base {
-		@apply rounded-vintage shadow-soft px-4 py-4 text-center text-sm font-medium transition-colors;
+		@apply rounded-vintage px-4 py-4 text-center text-sm font-medium shadow-soft transition-colors;
 	}
 
 	.btn-border {
@@ -69,11 +69,11 @@
 	}
 
 	.btn-primary {
-		@apply bg-primary hover:bg-secondary text-white;
+		@apply bg-primary text-white hover:bg-secondary;
 	}
 
 	.btn-secondary {
-		@apply border-foreground text-foreground hover:bg-border border-1;
+		@apply border-1 border-foreground text-foreground hover:bg-border;
 	}
 
 	.btn-link-primary {

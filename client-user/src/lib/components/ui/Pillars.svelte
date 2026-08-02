@@ -62,7 +62,7 @@
 	</div>
 
 	<div class="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-		{#each pillars as pillar}
+		{#each pillars as pillar (pillar.title)}
 			<article class="rounded-vintage border border-border bg-surface p-5 shadow-soft">
 				<div
 					class="mb-5 flex size-10 items-center justify-center rounded-full bg-primary text-white"
@@ -75,7 +75,7 @@
 				<p class="mt-3 text-sm leading-6 text-muted">{pillar.text}</p>
 
 				<ul class="mt-5 space-y-3 border-t border-border pt-5 text-sm text-muted">
-					{#each pillar.items as item}
+					{#each pillar.items as item (item)}
 						<li class="flex gap-3">
 							<span class="mt-1.5 size-1.5 shrink-0 rounded-full bg-accent"></span>
 							<span>{item}</span>
