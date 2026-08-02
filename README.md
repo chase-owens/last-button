@@ -67,14 +67,14 @@ The interview itself is performed entirely by the backend.
 
 ---
 
-# Constructional Interview
+## Constructional Interview
 
+```mermaid
 flowchart TB
-CI["Constructional Interview<br/>AI Methodology Platform"]
+    CI["Constructional Interview<br/>AI Methodology Platform"]
 
-    subgraph PLATFORM[" "]
+    subgraph PLATFORM["AI Methodology Platform"]
         direction TB
-        CI
 
         RESOURCES["Interview Resources"]
         PROMPTS["Prompt Engineering"]
@@ -95,14 +95,15 @@ CI["Constructional Interview<br/>AI Methodology Platform"]
 
     LB["The Last Button<br/><br/>Restaurant Operations<br/><br/>Schemas<br/>Instructions<br/>Terminology<br/>UI<br/>Persistence<br/>Infrastructure"]
 
-    CI -->|"consumes methodology + tools"| CA
-    CI -->|"consumes methodology + tools"| LB
+    CI -->|"methodology + tools"| CA
+    CI -->|"methodology + tools"| LB
 
-    classDef platform fill:#1f2937,color:#ffffff,stroke:#9ca3af,stroke-width:1.5px;
-    classDef app fill:#f8fafc,color:#0f172a,stroke:#94a3b8,stroke-width:1.5px;
+    classDef platform fill:#1f2937,color:#ffffff,stroke:#9ca3af,stroke-width:1.5px
+    classDef app fill:#f8fafc,color:#0f172a,stroke:#94a3b8,stroke-width:1.5px
 
-    class CI,RESOURCES,PROMPTS,METHOD,EVAL,TOOLS,WORKFLOWS platform;
-    class CA,LB app;
+    class CI,RESOURCES,PROMPTS,METHOD,EVAL,TOOLS,WORKFLOWS platform
+    class CA,LB app
+```
 
 Neither application owns the interview methodology.
 
