@@ -9,7 +9,9 @@ const DEFAULT_SERVER_URL =
 const GOAL_ANALYSIS_RESOURCE =
   "constructional-interview://methodology/goal-analysis";
 
-export async function getConstructionalGoalAnalysis(): Promise<string> {
+let methodologyPromise: Promise<string> | undefined;
+
+async function loadConstructionalGoalAnalysis(): Promise<string> {
   const serverUrl = process.env.MCP_SERVER_URL ?? DEFAULT_SERVER_URL;
 
   const client = new Client({
@@ -42,4 +44,13 @@ export async function getConstructionalGoalAnalysis(): Promise<string> {
   } finally {
     await client.close();
   }
+}
+
+export function getConstructionalGoalAnalysis(): Promise<string> {
+  methodologyPromise ??= loadConstructionalGoalAnalysis().catch((error) => {
+    methodologyPromise = undefined;
+    throw error;
+  });
+
+  return methodologyPromise;
 }

@@ -20,7 +20,7 @@
 		errorMessage = '';
 
 		try {
-			const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/inquiries`, {
+			const response = await fetch(`${import.meta.env.VITE_INQUIRIES_API_BASE_URL}/inquiries`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'

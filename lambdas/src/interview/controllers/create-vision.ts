@@ -18,15 +18,9 @@ export type CreateVisionRequest = {
 const toResponseInput = (
   messages: InterviewMessage[],
 ): OpenAI.Responses.ResponseInput =>
-  messages.map((message) => ({
-    type: "message",
+  messages.map((message): OpenAI.Responses.EasyInputMessage => ({
     role: message.role === "coach" ? "assistant" : "user",
-    content: [
-      {
-        type: "input_text",
-        text: message.content,
-      },
-    ],
+    content: message.content,
   }));
 
 export class CreateVisionController {
@@ -39,7 +33,7 @@ export class CreateVisionController {
       model: "gpt-5",
       input: [
         {
-          type: "message",
+          // type: "message",
           role: "system",
           content: [
             {
