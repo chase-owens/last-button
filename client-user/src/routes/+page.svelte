@@ -84,8 +84,10 @@
 </section>
 
 <PhilosophySection />
-<Pillars />
-<!-- <HowItWorks /> -->
+<img
+	src="/images/pillars.png"
+	alt="how it work. a cycle of continuous improvement and continuous delivery."
+/>
 <img
 	class="lg:mx-20"
 	src="/images/ci_cd.png"
