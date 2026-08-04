@@ -2,7 +2,7 @@ import OpenAI from "openai";
 import { zodTextFormat } from "openai/helpers/zod.mjs";
 
 import { createVisionResponseSchema } from "@last-button/domain";
-import { getConstructionalGoalAnalysis } from "@last-button/mcp";
+import { getVisionInterviewMethodology } from "@last-button/mcp";
 
 import { restaurantInstructions } from "../prompts/restaurantInstructions.js";
 
@@ -27,20 +27,24 @@ export class CreateVisionController {
   constructor(private readonly openai: OpenAI) {}
 
   async execute(request: CreateVisionRequest) {
-    const methodology = await getConstructionalGoalAnalysis();
+    const interviewMethodology = await getVisionInterviewMethodology();
 
     const response = await this.openai.responses.parse({
       model: "gpt-5",
       input: [
         {
-          // type: "message",
           role: "system",
           content: [
             {
               type: "input_text",
-              text: `${methodology}
+              text: `
+The following resources define the governing Constructional Interview methodology.
 
-${restaurantInstructions}`,
+${interviewMethodology}
+
+# Restaurant Domain Instructions
+
+${restaurantInstructions}`.trim(),
             },
           ],
         },

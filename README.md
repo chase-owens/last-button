@@ -2,9 +2,25 @@
 
 > Observe. Measure. Improve.
 
-The Last Button is an AI-assisted restaurant consulting platform built around the **Constructional Interview** methodology.
+The Last Button helps restaurant operators define what great execution actually looks like.
 
-Rather than generating generic recommendations, the platform guides restaurant owners through a structured interview that defines what successful execution actually looks like before discussing solutions.
+Through a guided Constructional Interview, the platform transforms vague operational concerns into clear, observable, and measurable operational visions that can become the foundation for coaching, accountability, and continuous improvement.
+
+---
+
+# Philosophy
+
+The Last Button is built on one assumption:
+
+> Restaurants rarely fail because they lack ideas.
+>
+> They fail because great execution has never been clearly defined.
+
+The purpose of the interview is to produce that definition.
+
+Once success can be observed, it can be measured.
+
+Once it can be measured, it can be coached.
 
 ---
 
@@ -32,12 +48,27 @@ Rather than generating generic recommendations, the platform guides restaurant o
 
 ---
 
+## How It Works
+
+The platform conducts a structured conversation with a restaurant operator.
+
+Instead of immediately recommending solutions, it progressively clarifies:
+
+- the desired operational outcome
+- the context in which success should occur
+- the observable behaviors that define success
+- measurable execution standards
+
+The result is an Operational Vision—a clear definition of what successful execution looks like before discussing how to achieve it.
+
+---
+
 ## Overview
 
 The application consists of four primary pieces:
 
 ```
-Restaurant Owner
+Restaurant Operator
         │
         ▼
 SvelteKit Client
@@ -46,13 +77,25 @@ SvelteKit Client
 API Gateway
         │
         ▼
-Interview Lambda
+Submit Interview Lambda
         │
         ▼
-Constructional Interview MCP Server
+Interview Worker Lambda
         │
         ▼
-OpenAI Responses API
+Constructional Interview MCP
+        │
+        ▼
+Open AI
+        │
+        ▼
+DynamoDB
+        │
+        ▼
+Poll Interview Lambda
+        │
+        ▼
+Client
 ```
 
 The client is intentionally thin.
@@ -140,7 +183,7 @@ The resource acts as the authoritative specification for how interviews should b
 
 ---
 
-# Vision Interview
+# Operational Vision
 
 The interview gradually refines an operational vision by asking increasingly specific questions.
 
@@ -158,6 +201,27 @@ Only after the operational vision is complete does the platform transition into 
 
 ---
 
+## Current Capabilities
+
+✓ Conduct an AI-assisted Constructional Interview
+
+✓ Generate an Operational Vision
+
+✓ Async interview processing
+
+✓ Restaurant-specific methodology
+
+✓ Contact workflow for follow-on consulting
+
+### Planned
+
+- Full Constructional Interview
+- Operational roadmap generation
+- Coaching recommendations
+- Evaluation experiments
+
+---
+
 # Technology
 
 - SvelteKit
@@ -166,10 +230,9 @@ Only after the operational vision is complete does the platform transition into 
 - AWS CDK
 - API Gateway
 - Lambda
-- EventBridge
+- DynamoDB
 - CloudFront
 - S3
-- Cognito
 - MCP Server
 - OpenAI Responses API
 
@@ -224,19 +287,3 @@ Deploy infrastructure
 ```bash
 npm run deploy -w infra
 ```
-
----
-
-# Philosophy
-
-The Last Button is built on one assumption:
-
-> Restaurants rarely fail because they lack ideas.
->
-> They fail because great execution has never been clearly defined.
-
-The purpose of the interview is to produce that definition.
-
-Once success can be observed, it can be measured.
-
-Once it can be measured, it can be coached.

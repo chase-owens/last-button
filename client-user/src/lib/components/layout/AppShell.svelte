@@ -10,7 +10,7 @@
 	] as const;
 </script>
 
-<div class="min-h-screen bg-background text-foreground">
+<div class="flex min-h-screen flex-col bg-background text-foreground">
 	<header class="sticky top-0 z-30 border-b border-border bg-surface/95 backdrop-blur">
 		<div class="mx-auto flex h-20 max-w-6xl items-center justify-between px-4">
 			<a href={resolve('/')} class="group">
@@ -25,10 +25,6 @@
 					</a>
 				{/each}
 			</nav>
-
-			<!-- <a href="/contact" class="btn-primary hidden px-4 py-3 text-sm md:inline-flex">
-				Schedule an Assessment
-			</a> -->
 		</div>
 
 		<nav class="border-t border-border px-4 py-3 md:hidden">
@@ -42,7 +38,7 @@
 		</nav>
 	</header>
 
-	<main>
+	<main class="flex grow flex-col">
 		{@render children()}
 	</main>
 
