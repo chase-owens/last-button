@@ -26,7 +26,7 @@
 
 <section class="bg-surface">
 	<div
-		class="mx-auto grid max-w-6xl gap-12 px-4 py-20 md:grid-cols-[1.1fr_0.9fr] md:items-center md:py-28"
+		class="mx-auto grid max-w-6xl gap-12 px-4 py-10 md:grid-cols-[1.1fr_0.9fr] md:items-center md:py-28 lg:py-20"
 	>
 		<div>
 			<p class="mb-4 text-sm font-semibold tracking-[0.24em] text-accent uppercase">
@@ -34,13 +34,20 @@
 			</p>
 
 			<h1 class="font-heading text-5xl leading-tight text-primary md:text-6xl">
-				Your Restaurant Doesn't Need More Ideas. It needs better execution.
+				Most improvement starts in the wrong place
 			</h1>
 
 			<p class="mt-6 max-w-2xl text-lg leading-8 text-muted">
-				Define what exceptional execution actually looks like for your restaurant. In just a few
-				minutes, you'll create a clear operational vision that can be measured, coached, and
-				consistently delivered.
+				When the kitchen crashes or the front of house feels chaotic during a busy service, it's
+				natural to focus on the problems you want to eliminate.
+			</p>
+
+			<p class="mt-6 max-w-2xl text-lg leading-8 text-muted">
+				But problems rarely tell you what to build.
+			</p>
+
+			<p class="mt-6 max-w-2xl text-lg leading-8 text-muted">
+				They only tell you what you don't want.
 			</p>
 
 			<div class="mt-8 flex flex-col gap-3 sm:flex-row">
