@@ -14,11 +14,6 @@
 		content="The Last Button helps independent restaurants improve consistency, guest experience, and operational execution with a constructional approach to restaurant excellence."
 	/>
 
-	<meta
-		name="keywords"
-		content="restaurant consulting, restaurant operations, guest experience, hospitality consulting, restaurant standards, restaurant audits, restaurant assessments, server, server training"
-	/>
-
 	<meta name="robots" content="index,follow" />
 
 	<link rel="canonical" href="https://thatlastbutton.com/" />
