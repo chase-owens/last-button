@@ -1,7 +1,7 @@
 <script lang="ts">
 </script>
 
-<section class="mx-auto max-w-6xl px-4">
+<section class="mx-auto max-w-6xl px-4 pb-12">
 	<div class="max-w-3xl">
 		<p class="text-sm font-semibold tracking-[0.22em] text-accent uppercase">How It Works</p>
 

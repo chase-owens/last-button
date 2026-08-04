@@ -107,7 +107,7 @@
 	/>
 </svelte:head>
 
-<section class="mx-auto max-w-6xl px-4 py-20">
+<section class="mx-auto max-w-6xl px-4 py-10 lg:py-20">
 	<div class="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
 		{#if !vision}<StartConversation />{:else}<WhereDoWeGoFromHere />{/if}
 

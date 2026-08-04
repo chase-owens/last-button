@@ -7,7 +7,7 @@
 	const navItems = [
 		{ label: 'Home', href: '/' },
 		{ label: 'How It Works', href: '/vision' },
-		{ label: 'Contact', href: '/contact' }
+		{ label: 'Next Steps', href: '/contact' }
 	] as const;
 </script>
 
@@ -16,7 +16,9 @@
 		<div class="mx-auto flex h-20 max-w-6xl items-center justify-between px-4">
 			<a href={resolve('/')} class="group">
 				<p class="font-heading text-xl text-primary md:text-2xl">The Last Button</p>
-				<p class="text-xs tracking-[0.22em] text-muted uppercase">Observe. Measure. Improve.</p>
+				<p class="text-xs tracking-[0.22em] text-muted uppercase">
+					Clarity. Consistency. Confidence.
+				</p>
 			</a>
 
 			<nav class="hidden items-center gap-6 text-sm font-medium md:flex">
@@ -49,7 +51,7 @@
 				<div>
 					<h2 class="font-heading text-2xl text-white">The Last Button</h2>
 					<p class="mt-3 max-w-xl text-sm leading-6 text-white/75">
-						Helping restaurants find the details standing between good and exceptional.
+						Defining success. Building consistency.
 					</p>
 				</div>
 

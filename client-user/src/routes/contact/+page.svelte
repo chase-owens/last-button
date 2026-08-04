@@ -56,52 +56,55 @@
 	const ctaLabel = $derived(isSubmitting ? 'Submitting...' : 'Request Discovery Call');
 </script>
 
-<section class="mx-auto max-w-6xl px-4 py-20">
+<section class="mx-auto max-w-6xl px-4 py-10 lg:py-20">
 	<div class="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
 		<div>
 			<p class="text-sm font-semibold tracking-[0.22em] text-accent uppercase">
-				Schedule an Assessment
+				Ready to take the next step?
 			</p>
 
-			<h1 class="mt-3 font-heading text-5xl text-primary md:text-6xl">Start with a Conversation</h1>
+			<h1 class="mt-3 font-heading text-5xl text-primary md:text-6xl">
+				You've already started defining what success looks like for your restaurant.
+			</h1>
 
 			<p class="mt-8 max-w-2xl text-lg leading-8 text-muted">
-				Every restaurant is different. The first step isn't recommendations—it's understanding your
-				concept, goals, current challenges, and what success looks like for your operation.
+				The next step is applying that same process to your operation, your team, and your daily
+				execution.
 			</p>
 
 			<p class="mt-6 max-w-2xl leading-8 text-muted">
-				We'll discuss where you are today, where you'd like to be, and whether an assessment is the
-				right fit. If there is an opportunity to strengthen execution, align standards, and improve
-				results, we'll outline what the next steps could look like.
+				We'll learn about your restaurant, discuss where you'd like to go, and explore how we can
+				help turn that vision into reality.
 			</p>
 
 			<div class="mt-10 rounded-vintage border border-border bg-surface p-6">
-				<h2 class="font-heading text-2xl text-primary">What to Expect</h2>
+				<h2 class="font-heading text-2xl text-primary">Where Do We Go From Here?</h2>
 
 				<ul class="mt-6 space-y-4 text-muted">
 					<li>
-						<strong class="text-primary">Discovery Conversation</strong> — Learn about your operation,
-						priorities, and current challenges.
+						<strong class="text-primary">Discovery</strong> — We'll learn about your restaurant, your
+						team, and the experience you're trying to create.
 					</li>
 
 					<li>
-						<strong class="text-primary">Assessment Discussion</strong> — Review what an on-site assessment
-						involves and whether it makes sense for your operation.
+						<strong class="text-primary">Operational Assessment</strong> — Together we'll identify where
+						the current operation supports that vision and where opportunities exist.
 					</li>
 
 					<li>
-						<strong class="text-primary">Next Steps</strong> — If there's a fit, we'll discuss potential
-						opportunities and an approach moving forward.
+						<strong class="text-primary">Roadmap</strong> — If it's a good fit, we'll outline a practical
+						plan for building the systems, standards, and coaching needed to achieve it.
 					</li>
 				</ul>
 			</div>
 		</div>
 
 		<div class="rounded-vintage border border-border bg-surface p-8 shadow-soft">
-			<h2 class="font-heading text-3xl text-primary">Request an Assessment</h2>
+			<h2 class="font-heading text-3xl text-primary">Let's Talk</h2>
 
-			<p class="mt-3 text-muted">Tell us a little about your operation and we'll be in touch.</p>
+			<p class="mt-3 text-muted">
+				Tell us a little about your restaurant and we'll reach out to schedule a conversation.
+			</p>
 
 			<form class="mt-8 space-y-5" onsubmit={handleSubmit}>
 				<div>
