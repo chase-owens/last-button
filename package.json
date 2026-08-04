@@ -21,7 +21,6 @@
     "mcp:dev": "npm --workspace mcp run dev"
   },
   "devDependencies": {
-    "@types/node": "^22",
     "globals": "^17.8.0",
     "nx": "23.1.0"
   },

@@ -2,9 +2,6 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "analytics": false,
   "targetDefaults": {
-    "build": {
-      "cache": true
-    },
     "check": {
       "cache": true
     },

@@ -28,6 +28,8 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          PUBLIC_INTERVIEW_API_URL: ${{ secrets.PUBLIC_INTERVIEW_API_URL }}
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
