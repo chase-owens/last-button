@@ -1,1 +1,1 @@
-export * from "./get-constructional-goal.js";
+export * from "./get-vision-interview-methodology.js";

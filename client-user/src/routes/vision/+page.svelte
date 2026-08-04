@@ -1,38 +1,56 @@
 <script lang="ts">
-	import Checkmark from '$lib/assets/icons/Checkmark.svelte';
-	import type { RestaurantVision, InterviewPhase, CreateVisionResult } from '@last-button/domain';
 	import { tick } from 'svelte';
 
-	type Message = {
-		role: 'coach' | 'user';
-		content: string;
-	};
+	import type { CreateVisionResult, RestaurantVision } from '@last-button/domain';
 
-	let phase = $state<InterviewPhase>('restaurant_vision');
-	let isOutOfScope = $state(false);
-	let hasUserAgreement = $state(false);
+	import { pollInterview } from '$lib/api/pollInterview';
+	import { submitInterview, type InterviewMessage } from '$lib/api/submitInterview';
+	import Checkmark from '$lib/assets/icons/Checkmark.svelte';
+	import StartConversation from '$lib/components/layout/StartConversation.svelte';
+	import WhereDoWeGoFromHere from '$lib/components/layout/WhereDoWeGoFromHere.svelte';
+
 	let answer = $state('');
-	let messages = $state<Message[]>([
-		{ role: 'coach', content: 'Assuming that were successful here, what would the outcome be?' }
-	]);
-	let isCreatingRestaurantVision = $state(false);
 
-	let totalUserMessages = $derived(messages.filter((message) => message.role === 'user'));
+	let messages = $state<InterviewMessage[]>([
+		{
+			role: 'coach',
+			content: 'Assuming that were successful here, what would the outcome be?'
+		}
+	]);
 
 	let vision = $state<RestaurantVision | null>(null);
 	let isProcessing = $state(false);
 	let errorMessage = $state('');
 
+	let messagesContainer: HTMLDivElement | undefined = $state(undefined);
+
 	const canSubmit = $derived(answer.trim().length > 0 && !isProcessing && !vision);
+	const ctaLabel = $derived(isProcessing ? 'Considering…' : 'Submit');
+	const filteredMessages = $derived(messages.slice(-5));
 
-	const handleKeyDown = async (event: KeyboardEvent) => {
-		if (event.key === 'Enter' && !event.shiftKey) {
-			event.preventDefault();
+	async function scrollToBottom() {
+		await tick();
 
-			if (!isProcessing && answer.trim()) {
-				await handleSubmit();
+		messagesContainer?.scrollTo({
+			top: messagesContainer.scrollHeight,
+			behavior: 'smooth'
+		});
+	}
+
+	const applyInterviewResult = async (result: CreateVisionResult) => {
+		messages = [
+			...messages,
+			{
+				role: 'coach',
+				content: result.coachMessage
 			}
+		];
+
+		if (result.status === 'complete') {
+			vision = result.vision;
 		}
+
+		await scrollToBottom();
 	};
 
 	async function handleSubmit(event?: SubmitEvent) {
@@ -44,7 +62,7 @@
 			return;
 		}
 
-		const nextMessages: Message[] = [
+		const nextMessages: InterviewMessage[] = [
 			...messages,
 			{
 				role: 'user',
@@ -57,75 +75,29 @@
 		errorMessage = '';
 		isProcessing = true;
 
+		await scrollToBottom();
+
 		try {
-			const response = await fetch(`${import.meta.env.VITE_INTERVIEW_API_BASE_URL}/interviews`, {
-				method: 'POST',
-				headers: {
-					'content-type': 'application/json'
-				},
-				body: JSON.stringify({
-					messages: nextMessages
-				})
-			});
+			const submission = await submitInterview(nextMessages);
 
-			const contentType = response.headers.get('content-type') ?? '';
+			const completedInterview = await pollInterview(submission.interviewId);
 
-			if (!contentType.includes('application/json')) {
-				throw new Error('The interview service returned an unexpected response.');
+			if (!completedInterview.result) {
+				throw new Error('The interview completed without returning a result.');
 			}
 
-			const result = (await response.json()) as CreateVisionResult;
-
-			if (!response.ok) {
-				throw new Error('The interview could not continue.');
-			}
-
-			if (result.status === 'continue') {
-				messages = [
-					...messages,
-					{
-						role: 'coach',
-						content: result.coachMessage
-					}
-				];
-
-				return;
-			}
-
-			if (result.status === 'complete') {
-				messages = [
-					...messages,
-					{
-						role: 'coach',
-						content: result.coachMessage
-					}
-				];
-
-				vision = result.vision;
-			}
+			await applyInterviewResult(completedInterview.result);
 		} catch (error) {
 			console.error('Vision interview failed:', error);
 
-			errorMessage = 'Something went wrong while continuing the conversation. Please try again.';
+			errorMessage =
+				error instanceof Error
+					? error.message
+					: 'Something went wrong while continuing the conversation. Please try again.';
 		} finally {
 			isProcessing = false;
 		}
 	}
-
-	let messagesContainer: HTMLDivElement | undefined = $state(undefined);
-
-	async function scrollToBottom() {
-		await tick();
-
-		messagesContainer?.scrollTo({
-			top: messagesContainer.scrollHeight,
-			behavior: 'smooth'
-		});
-	}
-
-	const ctaLabel = $derived(isProcessing ? '...' : 'Submit');
-
-	const filteredMessages = $derived(messages.slice(-5));
 </script>
 
 <svelte:head>
@@ -138,64 +110,7 @@
 
 <section class="mx-auto max-w-6xl px-4 py-20">
 	<div class="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-		<div>
-			<p class="text-sm font-semibold tracking-[0.22em] text-accent uppercase">
-				Create your operational vision
-			</p>
-
-			<h1 class="mt-3 font-heading text-5xl text-primary md:text-6xl">Start with a Conversation</h1>
-
-			<div class="mt-8 flex flex-col gap-6">
-				<p class="max-w-2xl text-lg leading-8 text-muted">
-					Every successful restaurant has a vision of what great execution looks like.
-				</p>
-
-				<p class="max-w-2xl text-lg leading-8 text-muted">
-					In about five minutes, we'll help you define yours. Through a guided conversation, you'll
-					create a clear operational vision that can be observed, measured, and consistently
-					executed.
-				</p>
-
-				<p class="max-w-2xl leading-8 text-muted">
-					This isn't a survey or a checklist. It's a structured interview designed to uncover what
-					success actually looks like for your restaurant before discussing how to achieve it.
-				</p>
-			</div>
-
-			<div class="mt-10 rounded-vintage border border-border bg-surface p-6">
-				<h2 class="font-heading text-2xl text-primary">What to Expect</h2>
-
-				<ul class="mt-6 space-y-4">
-					<li class="flex items-center gap-3">
-						<span class="text-green-600">
-							<Checkmark class="size-4" />
-						</span>
-						<span class="text-primary">A clear definition of success</span>
-					</li>
-
-					<li class="flex items-center gap-3">
-						<span class="text-green-600">
-							<Checkmark class="size-4" />
-						</span>
-						<span class="text-primary">Observable execution standards</span>
-					</li>
-
-					<li class="flex items-center gap-3">
-						<span class="text-green-600">
-							<Checkmark class="size-4" />
-						</span>
-						<span class="text-primary">A shared operational vision</span>
-					</li>
-
-					<li class="flex items-center gap-3">
-						<span class="text-green-600">
-							<Checkmark class="size-4" />
-						</span>
-						<span class="text-primary">A foundation for coaching and improvement</span>
-					</li>
-				</ul>
-			</div>
-		</div>
+		{#if !vision}<StartConversation />{:else}<WhereDoWeGoFromHere />{/if}
 
 		<div
 			class="flex flex-col rounded-vintage border border-border bg-surface shadow-soft lg:h-full"
@@ -311,7 +226,6 @@
 							<textarea
 								id="vision-answer"
 								bind:value={answer}
-								onkeydown={handleKeyDown}
 								disabled={isProcessing}
 								rows="3"
 								class="min-h-28 w-full resize-none bg-transparent px-4 py-4 leading-7 text-foreground outline-none placeholder:text-muted disabled:cursor-not-allowed disabled:opacity-60"
@@ -322,7 +236,7 @@
 							<div class="flex items-center justify-end bg-white px-4 py-3">
 								<button
 									type="submit"
-									disabled={false}
+									disabled={!canSubmit}
 									class="rounded-vintage bg-primary px-6 py-3 font-semibold text-white transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
 								>
 									{ctaLabel}

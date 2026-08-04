@@ -6,10 +6,8 @@ import * as cdk from "aws-cdk-lib/core";
 import * as secretsmanager from "aws-cdk-lib/aws-secretsmanager";
 import * as lambda from "aws-cdk-lib/aws-lambda";
 import * as apigatewayv2 from "aws-cdk-lib/aws-apigatewayv2";
-import { HttpUserPoolAuthorizer } from "aws-cdk-lib/aws-apigatewayv2-authorizers";
 import * as integrations from "aws-cdk-lib/aws-apigatewayv2-integrations";
 import * as dynamodb from "aws-cdk-lib/aws-dynamodb";
-import * as cognito from "aws-cdk-lib/aws-cognito";
 import path from "path";
 import { Construct } from "constructs";
 
@@ -43,36 +41,10 @@ const createNodeLambda = (
   });
 
 export class InfraStack extends cdk.Stack {
-  public readonly visionsTable: dynamodb.Table;
+  public readonly visionsTable: dynamodb.ITable;
 
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
-
-    // create userpool permit create account
-    const clientUserPool = new cognito.UserPool(this, "LastButtonUserPool", {
-      userPoolName: "last-button-client-pool",
-      selfSignUpEnabled: true,
-      signInAliases: { email: true },
-      autoVerify: { email: true },
-    });
-
-    clientUserPool.addDomain("LastButtonCognitoDomain", {
-      cognitoDomain: { domainPrefix: "last-button-client" },
-    });
-
-    const clientUserPoolClient = clientUserPool.addClient(
-      "LastButtonUserPoolClient",
-      {
-        authFlows: { userPassword: true, userSrp: true },
-        generateSecret: false,
-      },
-    );
-
-    const visionRouteAuthorizer = new HttpUserPoolAuthorizer(
-      "LastButtonClientAuthorizer",
-      clientUserPool,
-      { userPoolClients: [clientUserPoolClient] },
-    );
 
     // create openai secretarn
     const openAiSecret = secretsmanager.Secret.fromSecretNameV2(
@@ -82,29 +54,25 @@ export class InfraStack extends cdk.Stack {
     );
 
     // create interviews table
-    this.visionsTable = new dynamodb.Table(this, "LastButtonVisionTable", {
-      tableName: "last-button-visions-table",
-      partitionKey: {
-        name: "interviewId",
-        type: dynamodb.AttributeType.STRING,
-      },
-      billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
-      removalPolicy: cdk.RemovalPolicy.RETAIN,
-    });
-
-    this.visionsTable.addGlobalSecondaryIndex({
-      indexName: "userId-updatedAt-index",
-      partitionKey: { name: "userId", type: dynamodb.AttributeType.STRING },
-      sortKey: { name: "updatedAt", type: dynamodb.AttributeType.STRING },
-    });
+    this.visionsTable = dynamodb.Table.fromTableName(
+      this,
+      "LastButtonVisionTable",
+      "last-button-visions-table",
+    );
 
     // create interview lambda
-    const interviewLambda = createNodeLambda(
+    // Worker: performs the slow MCP + OpenAI work
+    const interviewWorkerLambda = createNodeLambda(
       this,
-      "LastButtonInterviewLambda",
+      "LastButtonInterviewWorkerLambda",
       {
-        functionName: "last-button-interview",
-        entry: path.join(lambdaProjectRoot, "src/interview/index.ts"),
+        functionName: "last-button-interview-worker",
+        entry: path.join(
+          lambdaProjectRoot,
+          "src/interview/handlers/process-interview.ts",
+        ),
+        memorySize: 512,
+        timeout: cdk.Duration.seconds(120),
         environment: {
           OPENAI_SECRET_ARN: openAiSecret.secretArn,
           MCP_SERVER_URL:
@@ -114,8 +82,53 @@ export class InfraStack extends cdk.Stack {
       this.visionsTable.tableName,
     );
 
-    this.visionsTable.grantReadWriteData(interviewLambda);
-    openAiSecret.grantRead(interviewLambda);
+    // Submit: saves the request and asynchronously invokes the worker
+    const submitInterviewLambda = createNodeLambda(
+      this,
+      "LastButtonSubmitInterviewLambda",
+      {
+        functionName: "last-button-submit-interview",
+        entry: path.join(
+          lambdaProjectRoot,
+          "src/interview/handlers/submit-interview.ts",
+        ),
+        timeout: cdk.Duration.seconds(15),
+        environment: {
+          INTERVIEW_WORKER_FUNCTION_NAME: interviewWorkerLambda.functionName,
+        },
+      },
+      this.visionsTable.tableName,
+    );
+
+    // Poller: returns processing status and the finished result
+    const getInterviewLambda = createNodeLambda(
+      this,
+      "LastButtonGetInterviewLambda",
+      {
+        functionName: "last-button-get-interview",
+        entry: path.join(
+          lambdaProjectRoot,
+          "src/interview/handlers/get-interview.ts",
+        ),
+        timeout: cdk.Duration.seconds(10),
+      },
+      this.visionsTable.tableName,
+    );
+
+    // Submit creates the initial processing record
+    this.visionsTable.grantWriteData(submitInterviewLambda);
+
+    // Worker reads the interview and writes the result
+    this.visionsTable.grantReadWriteData(interviewWorkerLambda);
+
+    // Poller only reads the current state
+    this.visionsTable.grantReadData(getInterviewLambda);
+
+    // Submit Lambda may asynchronously invoke the worker
+    interviewWorkerLambda.grantInvoke(submitInterviewLambda);
+
+    // Worker needs the OpenAI secret
+    openAiSecret.grantRead(interviewWorkerLambda);
 
     // create api
     const interviewApi = new apigatewayv2.HttpApi(
@@ -132,6 +145,7 @@ export class InfraStack extends cdk.Stack {
           allowHeaders: ["content-type", "authorization"],
           allowMethods: [
             apigatewayv2.CorsHttpMethod.POST,
+            apigatewayv2.CorsHttpMethod.GET,
             apigatewayv2.CorsHttpMethod.OPTIONS,
           ],
         },
@@ -142,32 +156,22 @@ export class InfraStack extends cdk.Stack {
       path: "/interviews",
       methods: [apigatewayv2.HttpMethod.POST],
       integration: new integrations.HttpLambdaIntegration(
-        "InterviewIntegration",
-        interviewLambda,
+        "SubmitInterviewIntegration",
+        submitInterviewLambda,
       ),
     });
 
-    // ensure - user data - sign up - in order to use the tool
-    // last time - we had a poll worker - maybe this time we use SQS to update backend to make a call?
+    interviewApi.addRoutes({
+      path: "/interviews/{interviewId}",
+      methods: [apigatewayv2.HttpMethod.GET],
+      integration: new integrations.HttpLambdaIntegration(
+        "GetInterviewIntegration",
+        getInterviewLambda,
+      ),
+    });
 
     new cdk.CfnOutput(this, "InterviewApiUrl", {
       value: interviewApi.apiEndpoint,
-    });
-
-    new cdk.CfnOutput(this, "ClientCognitoAuthority", {
-      value: clientUserPool.userPoolProviderUrl,
-    });
-
-    new cdk.CfnOutput(this, "ClientCognitoClientId", {
-      value: clientUserPoolClient.userPoolClientId,
-    });
-
-    new cdk.CfnOutput(this, "ClientCognitoUserPoolId", {
-      value: clientUserPool.userPoolId,
-    });
-
-    new cdk.CfnOutput(this, "ClientCognitoDomain", {
-      value: `https://last-button-client.auth.${this.region}.amazoncognito.com`,
     });
   }
 }
