@@ -25,12 +25,8 @@
 
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="The Last Button" />
-	<meta
-		property="og:description"
-		content="Helping restaurants identify operational gaps and build accountability systems that drive consistent execution."
-	/>
+	<meta property="og:description" content="Helping restaurants operations match the vision" />
 	<meta property="og:url" content="https://thatlastbutton.com/" />
-	<meta property="og:image" content="https://thatlastbutton.com/images/bar_hero.png" />
 </svelte:head>
 
 <section class="bg-surface">
