@@ -4,21 +4,25 @@
 	<div class="mx-auto max-w-6xl px-4 py-20 md:py-24">
 		<div class="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:items-start">
 			<div>
-				<p class="text-sm font-semibold tracking-[0.22em] text-accent uppercase">The Philosophy</p>
+				<p class="text-sm font-semibold tracking-[0.22em] text-accent uppercase">
+					The constructional approach
+				</p>
 
 				<h2 class="mt-5 font-heading text-4xl leading-tight text-white md:text-5xl">
-					There are plenty of things restaurants can't control. Standards aren't one of them.
+					Designing the path
 				</h2>
 
 				<p class="mt-8 text-lg leading-8 text-white/75">
-					Weather. Labor shortages. Competition. Rising costs. Changing consumer habits. Restaurants
-					face constant pressure from factors outside their control.
+					Discover what's already supporting the vision and spring board off of it.
 				</p>
 
 				<p class="mt-4 text-lg leading-8 text-white/75">
-					The challenge isn't effort. Most operators are working incredibly hard. The challenge is
-					knowing exactly what success looks like, whether it's happening, and what to do when it
-					isn't.
+					Instead of reacting to problems, you begin designing the interactions, behaviors, and
+					systems that produce the experience you actually want.
+				</p>
+
+				<p class="mt-4 text-lg leading-8 text-white/75">
+					Every improvement can now serve the vision instead of simply fighting the problem.
 				</p>
 			</div>
 

@@ -49,15 +49,13 @@
 
 <section class="mx-auto max-w-6xl px-4 py-20 md:py-24">
 	<div class="max-w-3xl">
-		<p class="text-sm font-semibold tracking-[0.22em] text-accent uppercase">What We Measure</p>
+		<p class="text-sm font-semibold tracking-[0.22em] text-accent uppercase">How Do We Get There</p>
 
-		<h2 class="mt-3 font-heading text-4xl text-primary md:text-5xl">
-			Success Looks Different Everywhere.
-		</h2>
+		<h2 class="mt-3 font-heading text-4xl text-primary md:text-5xl">What success looks like.</h2>
 
 		<p class="mt-6 max-w-2xl text-lg leading-8 text-muted">
-			The standards that define success depend on the concept, the operation, and the experience
-			ownership intends to create.
+			Every restaurant is different. The standards that define success should reflect your concept,
+			your team, and the experience you want every guest to have.
 		</p>
 	</div>
 

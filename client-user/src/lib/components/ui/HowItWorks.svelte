@@ -1,13 +1,11 @@
 <script lang="ts">
 </script>
 
-<section class="mx-auto max-w-6xl px-4 py-20">
+<section class="mx-auto max-w-6xl px-4">
 	<div class="max-w-3xl">
 		<p class="text-sm font-semibold tracking-[0.22em] text-accent uppercase">How It Works</p>
 
-		<h2 class="mt-3 font-heading text-4xl text-primary md:text-5xl">
-			From Observation to Execution.
-		</h2>
+		<h2 class="mt-3 font-heading text-4xl text-primary md:text-5xl">From Vision to Execution.</h2>
 
 		<p class="mt-6 text-lg leading-8 text-muted">
 			Every restaurant is different. Our process is designed to understand your operation, identify
