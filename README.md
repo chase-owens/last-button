@@ -33,11 +33,11 @@ Once it can be measured, it can be coached.
 <h2 align="center">Constructional Interview</h2>
 
 <p align="center">
-  <img src="data/images/interview-1.png" width="700">
+  <img src="data/images/interview-start.png" width="700">
 </p>
 
 <p align="center">
-  <img src="data/images/interview-2.png" width="700">
+  <img src="data/images/interview-vision.png" width="700">
 </p>
 
 <h2 align="center">Contact</h2>
@@ -185,19 +185,7 @@ The resource acts as the authoritative specification for how interviews should b
 
 # Operational Vision
 
-The interview gradually refines an operational vision by asking increasingly specific questions.
-
-Rather than immediately recommending solutions, the interview narrows the problem until success can be described in observable terms.
-
-Typical progression:
-
-1. Desired outcome
-2. Highest-impact interaction
-3. Observable behavior
-4. Context
-5. Measurable execution standard
-
-Only after the operational vision is complete does the platform transition into assessment and coaching.
+The interview gradually refines the operational vision by conducting a constructional interview
 
 ---
 
