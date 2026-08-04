@@ -73,7 +73,7 @@
 	}
 
 	.btn-secondary {
-		@apply border-1 border-foreground text-foreground hover:bg-border;
+		@apply border border-foreground text-foreground hover:bg-border;
 	}
 
 	.btn-link-primary {

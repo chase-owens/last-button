@@ -4,17 +4,6 @@
 	import HowItWorks from '$lib/components/ui/HowItWorks.svelte';
 	import PhilosophySection from '$lib/components/ui/PhilosophySection.svelte';
 	import Pillars from '$lib/components/ui/Pillars.svelte';
-
-	//     if (result.status === "continue") {
-	//   messages.push({
-	//     role: "coach",
-	//     content: result.coachMessage
-	//   });
-	// }
-
-	// if (result.status === "complete") {
-	//   vision = result.vision;
-	// }
 </script>
 
 <svelte:head>
