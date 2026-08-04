@@ -30,7 +30,7 @@
 				'Training expectations',
 				'Manager verification',
 				'Coaching rhythm',
-				'Accountability'
+				'Standards assessment'
 			]
 		},
 		{
@@ -40,7 +40,7 @@
 				'Labor efficiency',
 				'Food cost',
 				'Inventory control',
-				'Sales performance',
+				'Brand consistency',
 				'Repeat customers'
 			]
 		}
