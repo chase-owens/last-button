@@ -5,7 +5,6 @@
 
 	import { pollInterview } from '$lib/api/pollInterview';
 	import { submitInterview, type InterviewMessage } from '$lib/api/submitInterview';
-	import Checkmark from '$lib/assets/icons/Checkmark.svelte';
 	import StartConversation from '$lib/components/layout/StartConversation.svelte';
 	import WhereDoWeGoFromHere from '$lib/components/layout/WhereDoWeGoFromHere.svelte';
 
@@ -14,7 +13,7 @@
 	let messages = $state<InterviewMessage[]>([
 		{
 			role: 'coach',
-			content: 'Assuming that were successful here, what would the outcome be?'
+			content: `Assuming that we're successful here, what would the outcome be?`
 		}
 	]);
 
